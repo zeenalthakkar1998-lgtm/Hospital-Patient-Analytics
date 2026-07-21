@@ -25,4 +25,5 @@ SELECT Name, `Blood type` FROM healthcare_dataset WHERE Gender='Female' AND `Med
 --Findout age of the male patients having obesity
 -SELECT Age FROM healthcare_dataset WHERE Gender='Male' AND `Medical condition`='Obesity';
 
-
+--Find female patients older than 40
+SELECT * FROM healthcare_dataset WHERE Gender='Female' AND Age>40;
