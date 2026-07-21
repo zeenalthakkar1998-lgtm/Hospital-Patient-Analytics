@@ -9,3 +9,9 @@ SELECT Name, Age FROM healthcare_dataset;
 
 -- Display all columns
 SELECT * FROM healthcare_dataset;
+
+-- Count number of patients suffering from Asthma 
+SELECT Count(*) FROM healthcare_dataset WHERE `Medical Condition`='Asthma';
+
+--Enlist name and age of female patients 
+SELECT Name, Age FROM healthcare_dataset WHERE Gender='Female';
