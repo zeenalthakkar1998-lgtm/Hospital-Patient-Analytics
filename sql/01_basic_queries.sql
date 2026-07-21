@@ -15,3 +15,17 @@ SELECT Count(*) FROM healthcare_dataset WHERE `Medical Condition`='Asthma';
 
 --Enlist name and age of female patients 
 SELECT Name, Age FROM healthcare_dataset WHERE Gender='Female';
+
+WHERE starts the filtering.
+AND adds additional conditions that must also be true.
+
+--Get me information about female patients suffering from cancer
+SELECT * FROM healthcare_dataset WHERE Gendder='Female' AND `Medical Condition`='Cancer';
+
+--Name and blood type of females suffering from diabetes
+SELECT Name, `Blood type` FROM healthcare_dataset WHERE Gender='Female' AND `Medical condition`='Diabetes';
+
+--Findout age of the male patients having obesity
+-SELECT Age FROM healthcare_dataset WHERE Gender='Male' AND `Medical condition`='Obesity';
+
+
