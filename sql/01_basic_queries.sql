@@ -1,5 +1,5 @@
 --count total patient records
-SELECT COUNT(*) FROM healthcare_dataset
+SELECT COUNT(*) FROM healthcare_dataset;
 
 -- Display patient names
 SELECT Name FROM healthcare_dataset;
@@ -17,13 +17,13 @@ SELECT Count(*) FROM healthcare_dataset WHERE `Medical Condition`='Asthma';
 SELECT Name, Age FROM healthcare_dataset WHERE Gender='Female';
 
 --Get me information about female patients suffering from cancer
-SELECT * FROM healthcare_dataset WHERE Gendder='Female' AND `Medical Condition`='Cancer';
+SELECT * FROM healthcare_dataset WHERE Gender='Female' AND `Medical Condition`='Cancer';
 
 --Name and blood type of females suffering from diabetes
 SELECT Name, `Blood type` FROM healthcare_dataset WHERE Gender='Female' AND `Medical condition`='Diabetes';
 
---Findout age of the male patients having obesity
--SELECT Age FROM healthcare_dataset WHERE Gender='Male' AND `Medical condition`='Obesity';
+--Age of the male patients having obesity
+SELECT Age FROM healthcare_dataset WHERE Gender='Male' AND `Medical condition`='Obesity';
 
 --Find female patients older than 40
 SELECT * FROM healthcare_dataset WHERE Gender='Female' AND Age>40;
@@ -95,3 +95,24 @@ SELECT *
 FROM healthcare_dataset
 ORDER BY Gender ASC,
          Age DESC;
+		 
+-- Display only first 10 patients 
+SELECT * FROM healthcare_dataset LIMIT 10;
+
+--Display only first five patients Name
+SELECT Name FROM healthcare_dataset LIMIT 5;
+
+--Find the 5 oldest patients
+SELECT * FROM healthcare_dataset ORDER BY AGE DESC LIMIT 5
+
+--Show 10 youngest patients 
+SELECT Name,  Age FROM healthcare_dataset ORDER BY Age ASC LIMIT 10
+
+--Display the first five patients who have diabetes 
+SELECT * FROM healthcare_dataset WHERE `Medical condition`='Diabetes' LIMIT 5
+
+--Name and Age of 10youngest female patients 
+SELECT Name, Age FROM healthcare_dataset WHERE Gender='Female' ORDER BY Age ASC LIMIT 10
+
+--Show me the first 3 patients with cancer, sorted from oldest to  youngest
+SELECT * FROM healthcare_dataset WHERE `Medical condition`='Cancer' ORDER BY Age DESC LIMIT 3
