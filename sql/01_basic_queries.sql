@@ -197,3 +197,23 @@ SELECT `Hospital`, COUNT(*) FROM healthcare_dataset GROUP BY `Hospital` ORDER BY
 
 --Show the number of patients for each Admission Type, sorted from highest to lowest.
 SELECT `Admission type`, COUNT(*) FROM healthcare_dataset GROUP BY `Admission type` ORDER BY COUNT(*) DESC
+
+/*HAVING
+--Learn how to filter grouped data using the HAVING clause.
+Here, WHERE cant be used as it comes before GROUP BY and thus enters HAVING
+HAVING can use COUNT but WHERE cannot*/
+
+--Show hospitals that treated more than 20 patients.
+SELECT `Hospital`, COUNT(*) FROM healthcare_dataset GROUP BY `Hospital` HAVING COUNT(*)>20
+
+--Show medical conditions having more than 9300 patients.
+SELECT `Medical condition`, COUNT(*) FROM healthcare_dataset GROUP BY `Medical Condition` HAVING COUNT(*)>9300
+
+--Show hospitals having more than 30 patients, sorted from highest to lowest.
+SELECT `Hospital`, COUNT(*) FROM healthcare_dataset GROUP BY`Hospital` HAVING COUNT(*)>30 ORDER BY COUNT(*) DESC
+
+--Show admission types having more than 18,500 patients.
+SELECT `Admission type`, COUNT(*) FROM healthcare_dataset GROUP BY `Admission type` HAVING COUNT(*)>18500
+
+
+
