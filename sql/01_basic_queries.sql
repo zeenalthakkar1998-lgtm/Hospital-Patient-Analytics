@@ -173,3 +173,27 @@ SELECT COUNT(DISTINCT Hospital) FROM healthcare_dataset
 
 --Count the number of distinct insurance provider
 SELECT COUNT(DISTINCT `Insurance Provider`) FROM healthcare_dataset
+
+/*GROUP BY
+Learn how to group rows and perform
+-- aggregate calculations on each group.*/
+
+--How many patients belong to each medical condition
+SELECT `Medical Condition`, COUNT(*) FROM healthcare_dataset GROUP BY `Medical condition`
+
+--Count patients admitted under each admission types 
+SELECT `Admission type`, COUNT(*) FROM healthcare_dataset GROUP BY `Admission type`
+
+--Count patients treated in each hospital 
+SELECT `Hospital`, COUNT(*) FROM healthcare_dataset GROUP BY `Hospital`
+
+SELECT COUNT(DISTINCT `Hospital`) FROM healthcare_dataset
+
+--Show the number of patients for each Medical Condition, sorted from highest to lowest.
+SELECT `Medical Condition`, COUNT(*) FROM healthcare_dataset GROUP BY `Medical Condition` ORDER BY COUNT(*)DESC
+
+--Show the number of patients for each Hospital, sorted from highest to lowest.
+SELECT `Hospital`, COUNT(*) FROM healthcare_dataset GROUP BY `Hospital` ORDER BY COUNT(*) DESC
+
+--Show the number of patients for each Admission Type, sorted from highest to lowest.
+SELECT `Admission type`, COUNT(*) FROM healthcare_dataset GROUP BY `Admission type` ORDER BY COUNT(*) DESC
