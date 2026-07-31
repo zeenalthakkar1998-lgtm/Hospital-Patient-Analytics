@@ -139,3 +139,37 @@ SELECT DISTINCT `Insurance Provider` FROM healthcare_dataset WHERE `Medical Cond
 
 --Dispplay all unique hospitals that treated cancer 
 SELECT DISTINCT Hospital FROM healthcare_dataset WHERE `Medical Condition`='Cancer'
+
+/*Count 
+Used to summarize data by counting how many records match the condition*/
+
+--Count the number of all patients 
+SELECT COUNT(*) FROM healthcare_dataset
+
+--Count Diabetic patients 
+SELECT COUNT(*) FROM healthcare_dataset WHERE `Medical Condition`='Diabetes'
+
+--Count Cancer patients 
+SELECT COUNT (*) FROM healthcare_dataset WHERE `Medical Condition`='Cancer'
+
+--Count the number of patients admitted as Emergency 
+SELECT COUNT (*) FROM healthcare_dataset WHERE `Admission Type`='Emergency'
+
+/*COUNT(Column)
+Example: Count the number of doctors 
+SELECT COUNT('Doctor') FROM healthcare_dataset*/
+
+SELECT COUNT ('Doctor') FROM healthcare_dataset
+/*It will count the number of rows filled in Doctor column. Suppose if any row is not filled, it wont be considered in count*/
+
+/*COUNT(DISTINCT Column)*/
+
+--Count the number of different doctors 
+SELECT DISTINCT Doctor FROM healthcare_dataset
+SELECT COUNT(DISTINCT Doctor) FROM healthcare_dataset
+
+--Count the number of distinct hospitals
+SELECT COUNT(DISTINCT Hospital) FROM healthcare_dataset
+
+--Count the number of distinct insurance provider
+SELECT COUNT(DISTINCT `Insurance Provider`) FROM healthcare_dataset

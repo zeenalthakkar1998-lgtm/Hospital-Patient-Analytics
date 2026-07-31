@@ -7,4 +7,4 @@ A portfolio project built to run Python, SQL, Git and Healthcare data analytics
 - Build an interactive dashboard 
 - Develop a professional portfolio for health informatics 
 ## Git branch practice
-- This section was added while learning Git branches 
+- This section was added while practicing git branches
