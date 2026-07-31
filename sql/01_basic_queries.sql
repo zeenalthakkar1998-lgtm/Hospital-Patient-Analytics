@@ -116,3 +116,26 @@ SELECT Name, Age FROM healthcare_dataset WHERE Gender='Female' ORDER BY Age ASC 
 
 --Show me the first 3 patients with cancer, sorted from oldest to  youngest
 SELECT * FROM healthcare_dataset WHERE `Medical condition`='Cancer' ORDER BY Age DESC LIMIT 3
+
+/*Distinct 
+Used to retrieve unique value from the columns
+SELECT DISTINCT Column FROM database 
+*/
+
+--How many different blood groups do we have in our patient database 
+SELECT DISTINCT `Blood type` FROM healthcare_dataset
+
+--Display all unique medical conditions
+SELECT DISTINCT `Medical Condition` FROM healthcare_dataset
+
+--Display all unique insurance providers 
+SELECT DISTINCT `Insurance Provider` FROM healthcare_dataset
+
+--List of insurance providers in alphabetical order  
+SELECT DISTINCT `Insurance Provider` FROM healthcare_dataset ORDER BY `Insurance Provider`
+
+--Which insurance provider have diabetic patients 
+SELECT DISTINCT `Insurance Provider` FROM healthcare_dataset WHERE `Medical Condition`='Diabetes'
+
+--Dispplay all unique hospitals that treated cancer 
+SELECT DISTINCT Hospital FROM healthcare_dataset WHERE `Medical Condition`='Cancer'
