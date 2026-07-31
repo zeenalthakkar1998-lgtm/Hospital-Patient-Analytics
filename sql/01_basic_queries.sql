@@ -215,5 +215,35 @@ SELECT `Hospital`, COUNT(*) FROM healthcare_dataset GROUP BY`Hospital` HAVING CO
 --Show admission types having more than 18,500 patients.
 SELECT `Admission type`, COUNT(*) FROM healthcare_dataset GROUP BY `Admission type` HAVING COUNT(*)>18500
 
+/*Mini Challange project:*/
+--List 10 oldest patients 
+SELECT * FROM healthcare_dataset ORDER BY `Age` DESC LIMIT 10
 
+--Show all distinct insurance providers.
+SELECT DISTINCT `Insurance provider` FROM healthcare_dataset
 
+--Count the total number of patients.
+
+--Count how many patients have Diabetes.
+SELECT COUNT(*) FROM healthcare_dataset WHERE `Medical condition`='Diabetes'
+
+--Show the number of patients in each Medical Condition.
+SELECT `Medical condition`, COUNT(*) FROM healthcare_dataset GROUP BY `Medical Condition`
+
+--Show only those Medical Conditions that have more than 9200 patients
+SELECT `Medical condition`, COUNT (*) FROM healthcare_dataset GROUP BY `Medical condition` HAVING COUNT(*)>9200
+
+--Show the number of patients admitted under each Admission Type, sorted from highest to lowest.
+SELECT `Admission type`, COUNT(*) FROM healthcare_dataset GROUP BY `Admission type` ORDER BY COUNT(*) DESC
+
+--List all patients who:
+--have Cancer OR Diabetes
+--and are older than 60
+--sorted by Age from oldest to youngest.
+SELECT * FROM healthcare_dataset WHERE (`Medical condition`='Cancer' OR `Medical condition`='Diabetes') AND AGE>60 ORDER BY AGE DESC
+
+--Find the top 5 hospitals with the highest number of patients.
+SELECT `Hospital`, COUNT (*) FROM healthcare_dataset GROUP BY `Hospital` ORDER BY COUNT(*) DESC LIMIT 5
+
+--Show the top 3 Medical Conditions with the highest number of patients, but only include conditions having more than 9200 patients 
+SELECT `Medical condition`, COUNT(*) FROM healthcare_dataset GROUP BY `Medical Condition` HAVING COUNT(*)>9200 ORDER BY COUNT(*) DESC LIMIT 3
