@@ -281,3 +281,26 @@ SELECT Name,MAX(`Billing amount`) FROM healthcare_dataset
 
 --Find total billing amount of patients with arthritiss
 SELECT SUM(`Billing amount`) FROM healthcare_dataset WHERE `Medical condition`= 'Arthritis'
+
+/*Hospital Analytics Challange*/
+
+--Count female patients with Diabetes
+SELECT COUNT(*) FROM healthcare_dataset WHERE `Medical condition`='Diabetes' AND `GENDER`='Female'
+
+--Find the average billing amount for male patients
+SELECT AVG(`Billing amount`) FROM healthcare_dataset WHERE `Gender`='Male'
+
+--Find the highest age among Cancer patients
+SELECT MAX(Age) FROM healthcare_dataset WHERE `Medical condition`='Cancer'
+
+--Find the lowest billing amount for Emergency admissions
+SELECT Name,MIN(`Billing amount`) FROM healthcare_dataset WHERE `Admission type`='Emergency'
+
+--Find the total billing amount for female patients with Arthritis
+SELECT SUM(`Billing amount`) FROM healthcare_dataset WHERE `Gender`='Female' AND `Medical condition`='Arthritis'
+
+--Find the number of patients in each medical condition
+SELECT `Medical condition`,COUNT(*) FROM healthcare_dataset GROUP BY `Medical condition`
+
+--Show only medical conditions with more than 9,000 patients, ordered from highest to lowest
+SELECT `Medical condition`, COUNT(*) FROM healthcare_dataset GROUP BY `Medical condition` HAVING COUNT(*)>9000 ORDER BY COUNT(*) DESC 
