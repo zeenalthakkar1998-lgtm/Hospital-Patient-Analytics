@@ -247,3 +247,37 @@ SELECT `Hospital`, COUNT (*) FROM healthcare_dataset GROUP BY `Hospital` ORDER B
 
 --Show the top 3 Medical Conditions with the highest number of patients, but only include conditions having more than 9200 patients 
 SELECT `Medical condition`, COUNT(*) FROM healthcare_dataset GROUP BY `Medical Condition` HAVING COUNT(*)>9200 ORDER BY COUNT(*) DESC LIMIT 3
+
+/*AGGREGATE FUNCTIONS
+
+Aggregate functions perform calculations on multiple rows and return a single value.
+Common Aggregate Functions:
+1. COUNT()
+2. SUM()
+3. AVG()
+4. MAX()
+5. MIN()*/
+
+--COUNT TOTAL NUMBER OF PATIENTS 
+SELECT COUNT(*) FROM healthcare_dataset
+
+--Count only patients with diabetes 
+SELECT COUNT(*) FROM healthcare_dataset WHERE `Medical condition`='Diabetes'
+
+--Find the total billing amount of all patients.
+SELECT SUM(`Billing Amount`) FROM healthcare_dataset
+
+--Find the total billing amount of Cancer patients.
+SELECT SUM(`Billing Amount`) FROM healthcare_dataset  WHERE `Medical Condition`='Cancer'
+
+--Average age of all patients 
+SELECT AVG(`Age`) FROM healthcare_dataset
+
+--Averagee billing amount
+SELECT AVG(`Billing amount`)  FROM healthcare_dataset
+
+--Find the highest billing amount
+SELECT Name,MAX(`Billing amount`) FROM healthcare_dataset
+
+--Find total billing amount of patients with arthritiss
+SELECT SUM(`Billing amount`) FROM healthcare_dataset WHERE `Medical condition`= 'Arthritis'
