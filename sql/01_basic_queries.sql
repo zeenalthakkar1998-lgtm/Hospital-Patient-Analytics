@@ -1,3 +1,27 @@
+-- ==========================================================
+-- Hospital Patient Analytics Project
+-- Author   : Zeenal Kirtikumar Thakkar
+-- Module   : 01 - Basic SQL Queries
+-- Database : SQLite
+-- ==========================================================
+
+-- Topics Covered
+-- ✔ SELECT
+-- ✔ WHERE
+-- ✔ AND / OR
+-- ✔ ORDER BY
+-- ✔ DISTINCT
+-- ✔ LIMIT
+-- ✔ GROUP BY
+-- ✔ HAVING
+-- ✔ COUNT()
+-- ✔ SUM()
+-- ✔ AVG()
+-- ✔ MAX()
+-- ✔ MIN()
+
+-- ==========================================================
+
 --count total patient records
 SELECT COUNT(*) FROM healthcare_dataset;
 
