@@ -119,3 +119,48 @@ SELECT doctors.doctor_name, patients.patient_name FROM Doctors LEFT JOIN Appoint
 /*IMPORTANT CONCEPT*/
 /*Find patients who do not have an appointment.*/
 SELECT * FROM Patients LEFT JOIN Appointments ON appointments.patient_id=Patients.patient_id WHERE Appointments.appointment_id IS NULL
+
+/*RIGHT JOINS: 
+when written like
+SELECT * FROM Patients RIGHT JOIN Appointments
+the table on the right side of the RIGHT JOIN will be kept with all it's row. 
+Unlikne LEFT JOIN where the table on LEFT SIDE of the LEFT JOIN is kept with all its row
+*/
+
+/*FULL OUTER JOIN:
+"I want absolute everything"*/
+
+SELECT *
+FROM Patients
+FULL OUTER JOIN Appointments
+ON Patients.patient_id = Appointments.patient_id
+
+/*SELF JOIN:
+first of all, there's no key word called self-join...so we use INNER JOIN
+but this time to connect data withing the same table.*/
+
+CREATE TABLE Employees (
+    employee_id INTEGER PRIMARY KEY,
+    employee_name TEXT NOT NULL,
+    department TEXT,
+    manager_id INTEGER,
+    FOREIGN KEY (manager_id) REFERENCES Employees(employee_id)
+);
+
+INSERT INTO Employees
+(employee_id, employee_name, department, manager_id)
+VALUES
+(1, 'Alice', 'CEO', NULL),
+(2, 'Bob', 'Sales', 1),
+(3, 'Charlie', 'IT', 1),
+(4, 'David', 'Sales', 2),
+(5, 'Emma', 'Sales', 2),
+(6, 'Frank', 'IT', 3);
+
+SELECT * FROM Employees
+
+--Show me every employee's name and their manager's name
+SELECT Employee.employee_name, Manager.employee_name FROM Employees AS employee INNER JOIN Employees AS Manager ON Employee.manager_id = Manager.employee_id
+
+--"Show every employee, their department, and their manager's name."
+SELECT Employee.employee_name, Manager.employee_name, employee.department FROM Employees AS employee INNER JOIN Employees AS manager ON Employee.manager_id=Manager.employee_id
