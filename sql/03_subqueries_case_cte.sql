@@ -174,3 +174,177 @@ SELECT
 FROM table1
 INNER JOIN table2
 ON table1.id = table2.id;
+
+-- ============================================
+-- CTE (COMMON TABLE EXPRESSION)
+-- ============================================
+
+-- A CTE creates a temporary named result from a query,
+-- which can then be used by another query.
+
+-- A CTE does NOT create a permanent table in the database.
+-- It exists only while that SQL statement is being executed.
+
+-- Think:
+-- Original Table
+--      ↓
+-- Run a query
+--      ↓
+-- Give the result a temporary name (CTE)
+--      ↓
+-- Run another query using that CTE
+
+
+-- ============================================
+-- BASIC CTE SYNTAX
+-- ============================================
+
+WITH CTE_Name AS
+(
+    SELECT columns
+    FROM table_name
+    WHERE condition
+)
+
+SELECT *
+FROM CTE_Name;
+
+
+-- ============================================
+-- EXAMPLE 1: SIMPLE CTE
+-- ============================================
+
+-- Create a CTE containing patients older than 40.
+
+WITH Older_Patients AS
+(
+    SELECT *
+    FROM Patients
+    WHERE age > 40
+)
+
+SELECT *
+FROM Older_Patients;
+
+
+-- IMPORTANT:
+-- Only the query that DEFINES the CTE goes inside parentheses.
+-- The main query that USES the CTE does not need parentheses.
+
+
+-- ============================================
+-- EXAMPLE 2: FILTERING A CTE
+-- ============================================
+
+-- First select patients aged 30 or above.
+-- Then, from that result, show only patients younger than 50.
+
+WITH Adult_Patients AS
+(
+    SELECT *
+    FROM Patients
+    WHERE age >= 30
+)
+
+SELECT *
+FROM Adult_Patients
+WHERE age < 50;
+
+
+-- Mental model:
+-- Patients
+--      ↓
+-- CTE filters age >= 30
+--      ↓
+-- Adult_Patients
+--      ↓
+-- Main query filters age < 50
+--      ↓
+-- Final Result
+
+
+-- ============================================
+-- EXAMPLE 3: CTE + JOIN
+-- ============================================
+
+-- First create a CTE containing patients aged 30 or above.
+-- Then show those patients along with their appointment IDs.
+
+WITH Older_Patients AS
+(
+    SELECT *
+    FROM Patients
+    WHERE age >= 30
+)
+
+SELECT
+    Older_Patients.patient_name,
+    Older_Patients.age,
+    Appointments.appointment_id
+FROM Older_Patients
+INNER JOIN Appointments
+    ON Appointments.patient_id = Older_Patients.patient_id;
+
+
+-- IMPORTANT:
+-- Once the CTE is created, the main query can use the CTE
+-- like a table.
+
+-- Instead of:
+-- FROM Patients
+
+-- We can use:
+-- FROM Older_Patients
+
+
+-- ============================================
+-- CTE + AGGREGATE FUNCTIONS
+-- ============================================
+
+-- CTEs can also contain calculations such as:
+-- COUNT(), AVG(), SUM(), MIN(), MAX(), GROUP BY, etc.
+
+-- Example:
+-- Count the number of appointments for each patient,
+-- then show only patients with more than one appointment.
+
+WITH Appointment_Counts AS
+(
+    SELECT
+        patient_id,
+        COUNT(appointment_id) AS appointment_count
+    FROM Appointments
+    GROUP BY patient_id
+)
+
+SELECT *
+FROM Appointment_Counts
+WHERE appointment_count > 1;
+
+
+-- ============================================
+-- KEY CTE RULES
+-- ============================================
+
+-- 1. WITH starts the CTE.
+-- 2. Give the CTE a meaningful name.
+-- 3. AS is followed by the query inside parentheses.
+-- 4. The CTE produces a temporary NAMED RESULT, not a permanent table.
+-- 5. The main query can query or JOIN that named result.
+-- 6. The CTE exists only for the SQL statement that immediately follows it.
+-- 7. CTEs are useful for breaking complicated queries into smaller,
+--    easier-to-read steps.
+
+-- Simple way to remember:
+-- CTE = Create a temporary named result → then query that result.
+
+--Show the names of patients who have more than one appointment, along with their appointment count.
+
+WITH Appointments_counts AS
+(SELECT patient_id, COUNT (appointment_id) AS Appointment_count FROM Appointments GROUP BY patient_id)
+SELECT Appointments_counts.patient_id, Patients.patient_name, Appointment_count FROM Appointments_counts INNER JOIN Patients ON patients.patient_id=Appointments_counts.patient_id WHERE Appointment_count>1 
+
+--Create a CTE called Senior_Patients containing patients older than 45. Then use the CTE to display only their patient_name and age.
+WITH Senior_patients AS
+(SELECT * FROM patients WHERE Age>45)
+SELECT patient_name, age FROM Senior_patients
