@@ -12,3 +12,11 @@
 ### 2 August
 - Organized project folder structure
 - Created project documentation
+
+### 24 August
+- Continued Python integration with SQLite database
+- Retrieved patient data from the Patients table using Python
+- Practiced iterating through patient records using a for loop
+- Used if / elif / else conditions to classify patients into age groups
+- Learned and implemented counter variables to count patients by age category
+- Generated a summary of Young Adult, Adult, and Older Adult patient counts
