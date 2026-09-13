@@ -7,26 +7,28 @@ cursor= connection.cursor()
 cursor.execute('SELECT * FROM Patients')
 patients = cursor.fetchall()
 
-young_adult_count = 0
-adult_count = 0
-older_adult_count = 0
 
-for patient in patients: 
-    print (f"Patient Name: {patient[1]}, Age: {patient[2]}")
+def classify_patients(patients, young_max=30, adult_max=50):
+    young_adult_count= 0
+    adult_count=0
+    older_adult_count=0
 
-    if  patient[2]<=30:
-        print('Young adult')
-        young_adult_count += 1
-    elif patient[2]<=50:
-        print('Adult')
-        adult_count += 1
-    else:
-        print ('Older adult')
-        older_adult_count  += 1
+    for patient in patients: 
+        print (f"Patient Name: {patient[1]}, Age: {patient[2]}")
 
-print("Young adults:", young_adult_count)
-print ("Adults:", adult_count)
-print ("Older adults:", older_adult_count)
+        if  patient[2]<=30:
+            print('Young adult')
+            young_adult_count += 1
+        elif patient[2]<=50:
+            print('Adult')
+            adult_count += 1
+        else:
+            print ('Older adult')
+            older_adult_count += 1
+    return young_adult_count, adult_count, older_adult_count 
 
-print ("Hellp. again")
-import pandas as pd
+young, adult, older = classify_patients(patients)
+
+print("Young adults:", young)
+print("Adults:", adult)
+print("Older adults:", older)
