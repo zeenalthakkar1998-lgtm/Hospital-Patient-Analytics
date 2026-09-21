@@ -32,3 +32,6 @@ young, adult, older = classify_patients(patients)
 print("Young adults:", young)
 print("Adults:", adult)
 print("Older adults:", older)
+
+for patient in patients:
+    print (f"Patient id: {patient[0]}, Patient name: {patient[1]}, Age:{patient[2]}")
