@@ -143,3 +143,52 @@ This checks whether age is between 30 and 49.
 Python if / elif / else is similar to SQL CASE WHEN. It checks conditions and performs different actions depending on which condition is true. It can be used to create categories, such as patient age groups.
 
 Counter variable: A variable that starts at a value such as 0 and is increased as a loop runs. count += 1 means increase the current value of count by 1. Counters are useful for counting records that meet particular conditions.
+
+## Execute-fetchall-loop 
+cursor.execute("SELECT * FROM Patients WHERE Age > 30")
+patients_above_30 = cursor.fetchall()
+
+for patient in patients_above_30:
+    print(patient)
+
+## SELECT VS WHERE
+SELECT * FROM Patients WHERE Age > 30
+
+## Parameterized queries 
+minimum_age = 30
+
+cursor.execute(
+    "SELECT * FROM Patients WHERE Age > ?",
+    (minimum_age,)
+)
+
+## 
+minimum_age = 30
+maximum_age = 50
+
+cursor.execute(
+    "SELECT * FROM Patients WHERE Age > ? AND Age < ?",
+    (minimum_age, maximum_age)
+)
+
+## Putting database query inside a function
+def get_patients_by_age_range(minimum_age, maximum_age):
+    cursor.execute(
+        "SELECT * FROM Patients WHERE Age > ? AND Age < ?",
+        (minimum_age, maximum_age)
+    )
+
+    filtered_patients = cursor.fetchall()
+
+    return filtered_patients
+
+## IN SHORT 
+INPUTS
+  ↓
+FUNCTION
+  ↓
+DOES SOME WORK
+  ↓
+RETURN
+  ↓
+VARIABLE RECEIVES RESULT

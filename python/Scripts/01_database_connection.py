@@ -35,3 +35,31 @@ print("Older adults:", older)
 
 for patient in patients:
     print (f"Patient id: {patient[0]}, Patient name: {patient[1]}, Age:{patient[2]}")
+
+cursor.execute ('SELECT * FROM Patients WHERE Age>30')
+Patients_above_30= cursor.fetchall()
+
+for patient in Patients_above_30:
+    print (f"Patient_id:{patient[0]}, Patient_name:{patient[1]}, Age:{patient[2]}")
+
+minimum_age = 30
+maximum_age= 50
+cursor.execute(
+    "SELECT * FROM Patients WHERE Age > ? AND Age < ?",
+    (minimum_age, maximum_age)
+)
+
+filtered_patients = cursor.fetchall()
+
+for patient in filtered_patients:
+    print(f"patient_id:{patient[0]}, patient_name:{patient[1]}, age:{patient[2]}")
+
+def get_patients_by_age_range (minimum_age, maximum_age):
+    cursor.execute(
+        "SELECT * FROM Patients WHERE Age > ? AND Age < ?",
+        (minimum_age, maximum_age)
+    )
+    patient_in_range=  cursor.fetchall()
+    return patient_in_range
+
+age_range_patients = get_patients_by_age_range(30, 50) 
