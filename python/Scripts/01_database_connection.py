@@ -42,8 +42,8 @@ Patients_above_30= cursor.fetchall()
 for patient in Patients_above_30:
     print (f"Patient_id:{patient[0]}, Patient_name:{patient[1]}, Age:{patient[2]}")
 
-minimum_age = 30
-maximum_age= 50
+minimum_age = 60
+maximum_age= 80
 cursor.execute(
     "SELECT * FROM Patients WHERE Age > ? AND Age < ?",
     (minimum_age, maximum_age)
@@ -62,4 +62,22 @@ def get_patients_by_age_range (minimum_age, maximum_age):
     patient_in_range=  cursor.fetchall()
     return patient_in_range
 
-age_range_patients = get_patients_by_age_range(30, 50) 
+age_range_patients = get_patients_by_age_range(60, 80) 
+
+for patient in age_range_patients:
+    print(f"Patient_name: {patient[1]}, Age: {patient[2]}")
+
+print(len(age_range_patients))
+
+print (f"Number of patients in this age group:{len(age_range_patients)}")
+
+total_age=0
+for patient in age_range_patients:
+    total_age +=patient[2]
+
+
+if len(age_range_patients)>0:
+    average_age= total_age/len(age_range_patients)
+    print (f"average age of patients in this age group: {average_age}")
+else:
+    print("No patients in this age group to calculate average age.")

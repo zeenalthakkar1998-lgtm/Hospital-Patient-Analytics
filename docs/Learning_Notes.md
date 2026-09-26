@@ -192,3 +192,22 @@ DOES SOME WORK
 RETURN
   ↓
 VARIABLE RECEIVES RESULT
+
+## Counting and Average
+
+# 1. len(collection)
+ Counts the number of items in a collection.
+ For fetched database results, it gives the number of returned rows.
+
+# 2. Accumulating values
+ total_age += patient[2]
+ Same as: total_age = total_age + patient[2]
+ Put it inside the loop to add the age of every patient.
+
+# 3. Average
+ First finish the loop to get the final total.
+ Average = total_age / number of patients.
+
+# 4. Avoid division by zero
+ Check len(age_range_patients) > 0 before calculating the average.
+ If no patients are returned, use else instead of dividing by zero.
